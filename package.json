@@ -1,0 +1,22 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wmharvey/webpack-server.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wmharvey/webpack-server/issues"
+  },
+  "homepage": "https://github.com/wmharvey/webpack-server#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}
