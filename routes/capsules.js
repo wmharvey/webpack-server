@@ -5,7 +5,7 @@ const Clothes = require('../models/Clothes');
 
 //GET all capsules
 router.get('/', (req, res) => {
-  Capsule.find().populate('tops bottoms accessories shoes')
+  Capsule.find()
   .then( capsules => {
     res.send(capsules);
   })
@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
   });
 });
 
-//GET aone capsules
+//GET one capsule
 router.get('/:id', (req, res) => {
   Capsule.findById(req.params.id).populate('tops bottoms accessories shoes')
   .then( capsule => {
