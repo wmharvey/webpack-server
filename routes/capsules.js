@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
   });
 });
 
-//GET one capsule
+//GET one capsule with all associated items
 router.get('/:id', (req, res) => {
   Capsule.findById(req.params.id).populate('tops bottoms accessories shoes')
   .then( capsule => {

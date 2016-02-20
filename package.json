@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js",
-    "test": "mocha"
+    "unit-test": "mocha",
+    "api-test": "mocha 'test-api/'"
   },
   "repository": {
     "type": "git",
@@ -22,5 +23,9 @@
     "express": "^4.13.4",
     "mongoose": "^4.4.4",
     "mongoose-auto-increment": "^5.0.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^2.0.1"
   }
 }
