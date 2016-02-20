@@ -1,5 +1,6 @@
 const express = require( 'express' );
 const app = express();
+const cityEnding = require('./lib/city_ending');
 
 app.use( express.static( __dirname + '/public' ) );
 
@@ -16,6 +17,11 @@ app.get('/api/cities', (req, res) => {
 		{ city: 'Seattle', state: 'Washington' },
 		{ city: 'New York City', state: 'New York' }
 	]);
+});
+
+app.get('/api/cities/:city', (req, res) => {
+  var city = cityEnding(req.params.city);
+  res.send(city);
 });
 
 app.listen(8000);
