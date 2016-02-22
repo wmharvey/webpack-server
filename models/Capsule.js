@@ -14,6 +14,8 @@ const Capsule = new Schema({
   bottoms: [{type: Number, ref: 'Clothes'}],
   accessories: [{type: Number, ref: 'Clothes'}],
   shoes: [{type: Number, ref: 'Clothes'}]
+}, {
+  timestamps: true
 });
 
 module.exports = mongoose.model('Capsule', Capsule);
