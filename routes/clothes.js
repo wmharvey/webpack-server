@@ -79,7 +79,7 @@ router.delete('/:id', (req, res) => {
     return Capsule.findOne({_id: deletedItem.capsule});
   })
   .then( capsule => {
-    capsule[clothingType].pull(req.params.id);
+    capsule[clothingType].pull({_id: req.params.id});
     return capsule.save();
   })
   .then( () => {
