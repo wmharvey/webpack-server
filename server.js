@@ -1,27 +1,33 @@
-const express = require( 'express' );
-const app = express();
-const cityEnding = require('./lib/city_ending');
+const mongoose = require( 'mongoose' );
+const dbURI = 'mongodb://whitney:abc@ds011228.mongolab.com:11228/capsule-wardrobe';
+const app = require('./app');
+mongoose.Promise = global.Promise;
 
-app.use( express.static( __dirname + '/public' ) );
+mongoose.connect(dbURI);
 
-app.use( ( req, res, next ) => {
-	res.header( 'Access-Control-Allow-Origin', '*' );
-	res.header( 'Access-Control-Allow-Methods', 'POST, GET, PATCH, PUT, DELETE' );
-	res.header( 'Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept' );
-	next();
+// CONNECTION EVENTS
+// When successfully connected
+mongoose.connection.on('connected', function () {
+  console.log('Mongoose default connection open to ' + dbURI);
+  app.listen(8000, () => {
+    console.log('Listening on port 8000...');
+  });
 });
 
-app.get('/api/cities', (req, res) => {
-	res.send([
-		{ city: 'Portland', state: 'Oregon' },
-		{ city: 'Seattle', state: 'Washington' },
-		{ city: 'New York City', state: 'New York' }
-	]);
+// If the connection throws an error
+mongoose.connection.on('error',function (err) {
+  console.log('Mongoose default connection error: ' + err);
 });
 
-app.get('/api/cities/:city', (req, res) => {
-  var city = cityEnding(req.params.city);
-  res.send(city);
+// When the connection is disconnected
+mongoose.connection.on('disconnected', function () {
+  console.log('Mongoose default connection disconnected');
 });
 
-app.listen(8000);
+// If the Node process ends, close the Mongoose connection
+process.on('SIGINT', function() {
+  mongoose.connection.close(function () {
+    console.log('Mongoose default connection disconnected through app termination');
+    process.exit(0);
+  });
+});

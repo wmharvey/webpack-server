@@ -4,8 +4,9 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "test" : "mocha"
+    "start": "nodemon server.js",
+    "unit-test": "mocha",
+    "api-test": "mocha 'test-api/'"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,13 @@
   },
   "homepage": "https://github.com/wmharvey/webpack-server#readme",
   "dependencies": {
-    "express": "^4.13.4"
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
+    "mongoose": "^4.4.4",
+    "mongoose-auto-increment": "^5.0.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^2.0.1"
   }
 }
