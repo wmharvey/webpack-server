@@ -1,5 +1,6 @@
+require('dotenv').config();
 const mongoose = require( 'mongoose' );
-const dbURI = 'mongodb://whitney:abc@ds011228.mongolab.com:11228/capsule-wardrobe';
+const dbURI = process.env.DB_URI;
 const app = require('./app');
 mongoose.Promise = global.Promise;
 
@@ -9,8 +10,8 @@ mongoose.connect(dbURI);
 // When successfully connected
 mongoose.connection.on('connected', function () {
   console.log('Mongoose default connection open to ' + dbURI);
-  app.listen(8000, () => {
-    console.log('Listening on port 8000...');
+  app.listen(process.env.PORT, () => {
+    console.log(`Listening on port ${process.env.PORT}...`);
   });
 });
 
